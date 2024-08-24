@@ -1,0 +1,79 @@
+What are Ansible ad-hoc commands?
+
+Ansible ad-hoc commands are one-liners used to perform quick tasks without writing a playbook. They are particularly useful for running simple operations or debugging. Here are some frequently used ad-hoc commands and modules along with examples:
+
+1. Ping All Hosts
+
+Purpose: To check if all hosts are reachable.
+ansible all -m ping
+Explanation: This uses the ping module to test connectivity to all hosts listed in the inventory.
+
+2. Gather Facts
+Purpose: To collect information about remote hosts.
+ansible all -m setup
+Explanation: The setup module gathers facts about the managed nodes, such as IP address, OS type, etc.
+
+3. Execute a Shell Command
+Purpose: To run a command on remote hosts.
+ansible all -m shell -a "uptime"
+Explanation: The shell module executes the uptime command on all hosts. Replace "uptime" with any other shell command you want to run.
+
+4. Copy Files to Remote Hosts
+Purpose: To copy a file from the control node to the managed nodes.
+ansible all -m copy -a "src=/path/to/local/file dest=/path/to/remote/location"
+Explanation: The copy module copies a file from the control node to the specified location on all managed nodes.
+
+5. Install a Package
+Purpose: To install a package on remote hosts.
+ansible all -m yum -a "name=htop state=present" -b
+Explanation: The yum module used to install the httpd package on CentOS-based systems. The -b flag tells Ansible to run the command with sudo. Replace yum with apt for Ubuntu systems.
+
+6. Start/Stop/Restart a Service
+Purpose: To manage services on remote hosts.
+ansible all -m service -a "name=httpd state=started" -b
+Explanation: The service module starts the httpd service on all managed nodes. Replace started with stopped or restarted as needed.
+
+7. Check Disk Usage
+Purpose: To check disk usage on remote hosts.
+ansible all -m command -a "df -h"
+Explanation: The command module runs the df -h command to check disk space usage. Unlike the shell module, it does not process shell-specific syntax like | or &&.
+
+8. Create a User
+Purpose: To create a new user on remote hosts.
+ansible all -m user -a "name=demouser state=present" -b
+Explanation: The user module creates a user named demouser on all managed nodes.
+
+9. Check Free Memory
+Purpose: To check free memory on remote hosts.
+ansible all -m command -a "free -m"
+Explanation: This uses the command module to check the available memory on the hosts.
+
+10. Reboot a Host
+**Purpose**: To reboot remote hosts.
+  ansible all -m reboot -b
+**Explanation**: The `reboot` module restarts all the managed nodes.
+
+11. Add a Line to a File
+**Purpose**: To add a specific line to a file on remote hosts.
+ansible all -m lineinfile -a "path=/etc/sysctl.conf line='net.ipv4.ip_forward=1'" -b
+**Explanation**: The `lineinfile` module adds the line `net.ipv4.ip_forward=1` to the `/etc/sysctl.conf` file. If the line already exists, it will not add it again.
+
+12. Set a File's Permissions
+**Purpose**: To change the permissions of a file.
+  ansible all -m file -a "path=/path/to/file mode=0644" -b
+**Explanation**: The `file` module changes the permissions of the specified file to `0644`.
+
+13. Download a File from a URL
+**Purpose**: To download a file from a URL to remote hosts.
+  ansible all -m get_url -a "url=https://example.com/file.tar.gz dest=/tmp/file.tar.gz"
+**Explanation**: The `get_url` module downloads the file from the specified URL to the `/tmp` directory on all managed nodes.
+
+14. Check Hostname
+**Purpose**: To get the hostname of remote hosts.
+  ansible all -m command -a "hostname"
+**Explanation**: This command retrieves the hostname of each managed node.
+
+15. Delete a User
+**Purpose**: To remove a user from remote hosts.
+  ansible all -m user -a "name=demouser state=absent" -b
+**Explanation**: The `user` module removes the user `demouser` from all managed nodes.
