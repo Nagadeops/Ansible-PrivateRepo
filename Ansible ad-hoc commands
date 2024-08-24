@@ -77,3 +77,36 @@ ansible all -m lineinfile -a "path=/etc/sysctl.conf line='net.ipv4.ip_forward=1'
 **Purpose**: To remove a user from remote hosts.
   ansible all -m user -a "name=demouser state=absent" -b
 **Explanation**: The `user` module removes the user `demouser` from all managed nodes.
+
+
+Single task examples:
+
+ansible all -i slaves.txt -m ping
+
+-m	-> means modules
+-a	-> means action
+-b	-> with Sudo privileges
+
+ansible all -i slaves.txt -m ping
+
+ansible all -i slaves.txt -a "(Linux commands)"
+
+ansible all -i slaves.txt -a "uname -a"
+
+ansible all -i slaves.txt -a "uptime"
+
+Ansible states to install the application:
+
+Install 	- present
+Uninstall	- absent
+start service - started
+stop service - stopped
+restart service - restarted
+
+-b -> Become means run as with Sudo privileges
+
+ansible all -i slaves.txt -m yum -a "name=httpd state=present" -b
+
+ansible all -i slaves.txt -m service -a "name=httpd state=started" -b
+
+ansible all -i slaves.txt -m copy -a "src=/home/ec2-user/index.html dest=/var/www/html/index.html" -b
