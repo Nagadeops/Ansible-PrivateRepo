@@ -99,7 +99,6 @@ Example of a Simple Playbook
 - name: Install and configure a web server
   hosts: webservers
   become: yes
-  
   tasks:
     - name: Install Apache
       apt:
