@@ -8,21 +8,3 @@ A typical role might look like this:
 
 ![image](https://github.com/user-attachments/assets/6c8adb04-9a5b-4eb8-9d35-fab19710efbc)
 
-my_role/
-├── defaults/
-│   └── main.yml
-├── files/
-│   └── myfile.conf
-├── handlers/
-│   └── main.yml
-├── meta/
-│   └── main.yml
-├── tasks/
-│   └── main.yml
-├── templates/
-│   └── mytemplate.j2
-├── tests/
-│   ├── inventory
-│   └── test.yml
-├── vars/
-    └── main.yml
