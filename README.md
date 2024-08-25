@@ -90,31 +90,6 @@ What is a playbook?
 
 An Ansible playbook is a YAML file that defines a series of tasks to be executed on remote hosts. Unlike ad-hoc commands, which are used for one-off tasks, playbooks are used to automate complex workflows and configuration management across multiple systems in a repeatable and structured way.
 
-Structure of a Playbook:
-
-A typical playbook consists of one or more "plays," where each play defines a set of tasks to be executed on a group of hosts.
-Example of a Simple Playbook
-
----
-- name: Install and configure a web server
-  hosts: webservers
-  become: yes
-  tasks:
-    - name: Install Apache
-      apt:
-        name: apache2
-        state: present
-
-    - name: Ensure Apache is running
-      service:
-        name: apache2
-        state: started
-
-    - name: Deploy a website
-      copy:
-        src: /path/to/local/index.html
-        dest: /var/www/html/index.html
-
 What are Ansible Roles?
 
 Ansible Roles are a way to organize Ansible playbooks into reusable and modular components. Roles allow you to break down complex playbooks into smaller, more manageable parts by grouping related tasks, variables, files, templates, and handlers into a structured format. This makes it easier to manage and reuse code across different projects.
