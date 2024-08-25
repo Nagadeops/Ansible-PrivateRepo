@@ -6,6 +6,8 @@ Directory Structure of an Ansible Role
 
 A typical role might look like this:
 
+![image](https://github.com/user-attachments/assets/6c8adb04-9a5b-4eb8-9d35-fab19710efbc)
+
 my_role/
 ├── defaults/
 │   └── main.yml
