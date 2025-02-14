@@ -1,0 +1,20 @@
+# Copy the script file and then Stop and Start the tomcat server.
+- name: Transfer and execute a script, stop and start tomcat server
+  hosts: all
+  become: yes
+  tasks:
+     - name: stop tomcat server
+       service:
+         name: tomcat8
+         state: stopped
+
+     - name: Transfer the script file from source to destination
+       copy: src=test.sh dest=/home/devops/backup mode=0777
+
+     - name: Execute the script
+       command: sh /home/devops/backup/test.sh
+
+     - name: restart tomcat server
+       service:
+         name: tomcat8
+         state: restarted
