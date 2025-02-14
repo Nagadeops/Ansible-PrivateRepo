@@ -110,3 +110,17 @@ ansible all -i slaves.txt -m yum -a "name=httpd state=present" -b
 ansible all -i slaves.txt -m service -a "name=httpd state=started" -b
 
 ansible all -i slaves.txt -m copy -a "src=/home/ec2-user/index.html dest=/var/www/html/index.html" -b
+
+Create ansible playbook and run it:
+
+vi playbook.yaml
+
+- hosts: test1
+  tasks:
+    - shell: echo Hello World > /tmp/ansible-file
+:wq!
+
+To run playbook:
+
+ansible-playbook -i hosts playbook.yaml
+
